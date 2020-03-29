@@ -2,7 +2,7 @@ import React from 'react';
 import './cart-list.css';
 import {CartListItem} from '../cart-list-item';
 
-const CartList = ({products}) => {
+const CartList = ({products, telCount}) => {
   return (
     <div className="cartList">
       <table>
@@ -17,9 +17,15 @@ const CartList = ({products}) => {
           </tr>
         </thead>
         <tbody>
-          {products.map((phone,idx) => {
-            return(
-            <CartListItem phone={phone} key={phone.id} idx={idx}/>)
+          {products.map((phone, idx) => {
+            return (
+              <CartListItem
+                phone={phone}
+                key={idx}
+                idx={idx}
+                telCount={telCount}
+              />
+            );
           })}
         </tbody>
       </table>

@@ -10,7 +10,7 @@ export default class App extends React.Component {
         title: 'Iphone',
         price: 500,
         rest: 10,
-        current: 1,
+        count: 1,
       },
       {
         id: 101,
@@ -29,18 +29,25 @@ export default class App extends React.Component {
     ],
   };
 
-  chamgeCnt(id, count) {
-    let newProducts = [this.state.products];
+  
+
+  changeCnt = (id, count) => {
+    let newProducts = [...this.state.products];
     let newProduct = {...newProducts[id]};
     newProduct.count = count;
     newProducts[id] = newProduct;
     this.setState({products: newProducts});
-  }
+    console.log(id, count);
+    console.log(this.state);
+  };
 
   render() {
     return (
       <div>
-        <CartListContainer products={this.state.products}  />
+        <CartListContainer
+          products={this.state.products}
+          telCount={this.changeCnt}
+        />
       </div>
     );
   }

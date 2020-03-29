@@ -1,11 +1,12 @@
-import React, {Component} from 'react'
-import {CartList} from '../../cart-list'
+import React from 'react';
+import {CartList} from '../../cart-list';
 
-export default class CartListContainer extends Component {
-    render(){
-        const{products}=this.props
-        return(
-            <CartList products={products}/>
-        )
-    }
-}
+const CartListContainer = ({products, telCount}) => {
+  return (
+    <div>
+      <CartList products={products} telCount={telCount} />;
+    </div>
+  );
+};
+
+export default CartListContainer;

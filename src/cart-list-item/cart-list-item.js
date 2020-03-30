@@ -4,10 +4,7 @@ import {Counter} from '../counter'
 const CartLIstItem = ({
   phone,
   idx,
-  telCount,
-  increase,
-  decrease,
-  inputCounter,
+  telCount
 }) => {
   const {id, title, price, rest, count} = phone;
   console.log(id);

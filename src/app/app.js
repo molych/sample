@@ -1,5 +1,5 @@
 import React from 'react';
-import {CartListContainer} from './cart-list-container/';
+import {CartListContainer} from '../cart-list-container';
 import './app.css';
 
 export default class App extends React.Component {
@@ -32,21 +32,20 @@ export default class App extends React.Component {
   
 
   changeCnt = (id, count) => {
-    let newProducts = [...this.state.products];
-    let newProduct = {...newProducts[id]};
-    newProduct.count = count;
-    newProducts[id] = newProduct;
-    this.setState({products: newProducts});
-    console.log(id, count);
-    console.log(this.state);
+    let products = [...this.state.products];
+    products[id] = {...products[id],count:count};
+    this.setState({products});
+    console.log(id,count)
   };
 
   render() {
+    const {products:{id}}=this.state
+    
     return (
       <div>
         <CartListContainer
           products={this.state.products}
-          telCount={this.changeCnt}
+          telCount={(count)=>this.changeCnt(id,count)}
         />
       </div>
     );

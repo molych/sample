@@ -1,47 +1,45 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-const Counter = ({telCount, id, min, max}) => {
-  // console.log(telCount(102,5))
-
-  const [count, setCount] = useState(min);
-  console.log(count)
-
-  const increase = () => {
-    set(count + 1);
+export default class Counter extends Component {
+  static defaultProps = {
+    telCount: function(count) {},
   };
 
-  const decrease = () => {
-    set(count - 1);
+  static propTypes = {
+    min: PropTypes.number.isRequired,
+    max: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
+    telCount: PropTypes.func,
   };
 
-  const inputCounter = e => {
+  increase = () => {
+    this.set(this.props.count + 1);
+  };
+
+  decrease = () => {
+    this.set(this.props.count - 1);
+  };
+
+  inputCounter = e => {
     let count = parseInt(e.target.value);
     if (!count) {
-      return set(count);
+      return this.set(count);
     }
-      
   };
 
-  const set = newCount => {
-    let count = Math.min(Math.max(newCount, min), max);
-    setCount(count);
+  set = newCount => {
+    let count = Math.min(Math.max(newCount, this.props.min), this.props.max);
+    this.props.telCount(count);
   };
 
-  return (
-    <div>
-      <button onClick={decrease}>-</button>
-      <input type="text" value={count} onChange={inputCounter} />
-      <button onClick={increase}>+</button>
-      {/* <button onClick={count => telCount(id, count)}>test</button> */}
-    </div>
-  );
-};
-
-export default Counter;
-
-Counter.propTypes = {
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  // count:PropTypes.number.isRequired
-};
+  render() {
+    return (
+      <div>
+        <button onClick={this.decrease}>-</button>
+        <input type="text" value={this.props.count} onChange={this.inputCounter} />
+        <button onClick={this.increase}>+</button>
+      </div>
+    );
+  }
+}

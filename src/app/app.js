@@ -31,21 +31,19 @@ export default class App extends React.Component {
 
   
 
-  changeCnt = (id, count) => {
+  changeCnt = (i, count) => {
     let products = [...this.state.products];
-    products[id] = {...products[id],count:count};
+    products[i] = {...products[i],count:count};
     this.setState({products});
-    console.log(id,count)
+    console.log(i,count)
   };
 
   render() {
-    const {products:{id}}=this.state
-    
     return (
       <div>
         <CartListContainer
           products={this.state.products}
-          telCount={(count)=>this.changeCnt(id,count)}
+          telCount={this.changeCnt}
         />
       </div>
     );

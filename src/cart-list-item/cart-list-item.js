@@ -11,7 +11,7 @@ const CartLIstItem = ({
 
   return (
     <tr key={id}>
-      <td>{idx + 1}</td>
+      <td>{idx +1}</td>
       <td>{title}</td>
       <td>{price}</td>
       <td>
@@ -19,7 +19,7 @@ const CartLIstItem = ({
           min={1}
           max={rest}
           count={count}
-          telCount={telCount}
+          telCount={(count)=>telCount(idx,count)}
           id={id}
         />
       </td>

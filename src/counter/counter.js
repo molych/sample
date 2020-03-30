@@ -23,8 +23,8 @@ export default class Counter extends Component {
 
   inputCounter = e => {
     let count = parseInt(e.target.value);
-    if (!count) {
-      return this.set(count);
+    if(count){
+    return this.set(count)
     }
   };
 
